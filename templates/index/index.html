@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+    我是index/index
+{% endblock%}
+{% block mainbody %}
+<ul>
+{% for i in list_mian reversed %}
+    <li>{{ i.name |first|upper}}</li>
+{% endfor %}
+</ul>
+
+{% ifequal user tuser %}
+    <h1>Welcome! 我是index</h1>
+{% endifequal %}
+
+{% endblock %}
+

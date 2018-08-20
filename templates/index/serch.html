@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+ 菜鸟教程
+{% endblock%}
+{% block mainbody %}
+<body>
+    <form action="/index/search" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="搜索">
+    </form>
+</body>
+{% endblock %}
