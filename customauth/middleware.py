@@ -1,12 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @File  : middleware.py.py
+# @Author: yuzhiteng@youle.com
+# @Date  : 2018/6/26
+# @Desc  :
 from django.conf import settings
-from django.http import HttpResponseRedirect
-from django.contrib.auth import SESSION_KEY
-from django.core.urlresolvers import reverse
-from django.contrib import auth
 from django.utils.functional import SimpleLazyObject
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect  
-
+from django.shortcuts import redirect
 
 def get_user(request):
 
@@ -23,15 +24,11 @@ class AuthenticationMiddleware(object):
 
         request.user = SimpleLazyObject(lambda: get_user(request))
 
-
         if request.path_info.startswith('/static/'):
+
             return None
 
-        if (request.COOKIES.get('username') == None or request.user == None) and request.path_info not in ["/users/login/","/users/check/","/users/error/", "/emailtemplate/api_function/", '/emailtemplate/audithtml/']:
+        if (request.COOKIES.get('username') == None or request.user == None) and request.path_info not in ["/users/login/", '/emailtemplate/audithtml/']:
 
+            print('888888')
             return redirect(reverse('users:login', args=[]))
-
-
-
-
-
